@@ -42,22 +42,33 @@ def write_to_file(string='', mode='w'):
         print('Error')
 
 def search_of_min(a, b, func):
-    write_to_file(str(a) + '\t' + '\t' + '\t' + str(b) + '\n', 'a')
+    
     #write_to_file(str(a) + '\n', 'a')
     #write_to_file(str(b) + '\n', 'a')
+    #write_to_file(str(b - a) + '\n', 'a')
+    
     if (b - a) < EPS:
         return (a + b) / 2
 
     x1, x2 = func(a, b)
 
+    #write_to_file(str(x1) + '\n', 'a')
+    #write_to_file(str(x2) + '\n', 'a')
+
     f1 = f(x1)
     f2 = f(x2)
 
+    #write_to_file(str(f1) + '\n', 'a')
+    #write_to_file(str(f2) + '\n', 'a')
+
     if f1 == f2:
+        #write_to_file(str((x2-x1)/(b-a)) + '\n', 'a')
         return search_of_min(x1, x2, func)
     elif f1 < f2:
+        #write_to_file(str((x2-a)/(b-a)) + '\n', 'a')
         return search_of_min(a, x2, func)
     else:
+        #write_to_file(str((b-x1)/(b-a)) + '\n', 'a')
         return search_of_min(x1, b, func)
 
 
