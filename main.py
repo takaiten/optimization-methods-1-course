@@ -34,8 +34,17 @@ def fibonacci(a, b):
     return a + fibonacci_number(n) / fibonacci_number(n + 2) * (b - a), \
            a + fibonacci_number(n + 1) / fibonacci_number(n + 2) * (b - a)
 
+def write_to_file(string='', mode='w'):
+    try:
+        with open('input.txt', mode) as fout:
+            fout.write(string)
+    except IOError:
+        print('Error')
 
 def search_of_min(a, b, func):
+    write_to_file(str(a) + '\t' + '\t' + '\t' + str(b) + '\n', 'a')
+    #write_to_file(str(a) + '\n', 'a')
+    #write_to_file(str(b) + '\n', 'a')
     if (b - a) < EPS:
         return (a + b) / 2
 
@@ -53,14 +62,17 @@ def search_of_min(a, b, func):
 
 
 def main():
+    write_to_file('Dichotomy\n')
     print('Dichotomy')
     res = search_of_min(-2, 20, dichotomy)
     print('Min of f(x) is located at', res)
 
+    write_to_file('\nGolden ratio\n', 'a')
     print('\nGolden ratio')
     res = search_of_min(-2, 20, golden_ratio)
     print('Min of f(x) is located at', res)
 
+    write_to_file('\nFibonacci\n', 'a')
     print('\nFibonacci')
     res = search_of_min(-2, 20, fibonacci)
     print('Min of f(x) is located at', res)
